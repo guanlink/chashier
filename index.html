@@ -1,432 +1,602 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Checklist</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist Chasier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
+    :root {
+        --crema: #FDFBF7;
+        --tinta: #1F3A45;
+        --azul: #3AA6C9;
+        --azul-oscuro: #2C8AA8;
+        --rosa: #F2789E;
+        --boba: #4A2E23;
+        --boba-claro: #C9A98C;
+    }
+
     * {
         box-sizing: border-box;
     }
 
     body {
-        font-family: 'Segoe UI', Arial, sans-serif;
-        background: linear-gradient(180deg, #eaf6fb 0%, #fdeef3 100%);
-        color: #2c3e50;
+        font-family: 'Nunito', sans-serif;
+        background-color: var(--crema);
+        background-image:
+            radial-gradient(circle at 15% 20%, rgba(58,166,201,0.08) 0%, transparent 35%),
+            radial-gradient(circle at 85% 75%, rgba(242,120,158,0.08) 0%, transparent 35%);
+        color: var(--tinta);
         margin: 0;
-        padding: 20px;
+        padding: 0 0 60px 0;
+    }
+
+    .cabecera {
+        text-align: center;
+        padding: 28px 16px 10px 16px;
         max-width: 700px;
         margin: 0 auto;
     }
 
+    .mascota {
+        font-size: 2.4em;
+        display: block;
+        margin-bottom: -6px;
+        animation: flotarMascota 3s ease-in-out infinite;
+    }
+
+    @keyframes flotarMascota {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-6px) rotate(-3deg); }
+    }
+
     h1 {
-        text-align: center;
-        color: #3aa6c9;
-        font-size: 2em;
-        margin-bottom: 0;
-        letter-spacing: 1px;
+        font-family: 'Fredoka', sans-serif;
+        font-weight: 600;
+        color: var(--azul-oscuro);
+        font-size: 1.9em;
+        margin: 4px 0 2px 0;
+        letter-spacing: 0.5px;
     }
 
-    h1::before {
-        content: "🧋 ";
+    .saludo {
+        color: var(--boba-claro);
+        font-size: 0.9em;
+        font-weight: 600;
+        margin-bottom: 10px;
     }
 
-    h1::after {
-        content: " 🐻‍❄️";
-    }
-
-    h2 {
-        color: #e8779e;
-        border-bottom: 3px solid #cdeef8;
-        padding-bottom: 8px;
-        margin-top: 40px;
-        font-size: 1.3em;
-    }
-
-    h3 {
-        color: #3aa6c9;
-        margin-top: 25px;
-    }
-
-    h5 {
-        color: #9bb3c2;
-        font-weight: normal;
-        font-style: italic;
-        font-size: 0.85em;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 15px 0 30px 0;
-        background-color: #ffffff;
-        box-shadow: 0 3px 10px rgba(58, 166, 201, 0.15);
-        border-radius: 14px;
-        overflow: hidden;
-    }
-
-    table, th, td {
-        border: none;
-    }
-
-    th {
-        background-color: #3aa6c9;
-        color: white;
-        padding: 12px 10px;
-        text-align: left;
-        font-size: 0.95em;
-    }
-
-    td {
-        padding: 12px 10px;
-        border-bottom: 1px solid #eef6fa;
-        font-size: 0.95em;
-    }
-
-    tr:last-child td {
-        border-bottom: none;
-    }
-
-    tr:hover td {
-        background-color: #fdf3f7;
-    }
-
-    input[type="checkbox"] {
-        width: 22px;
-        height: 22px;
-        accent-color: #e8779e;
-        cursor: pointer;
-    }
-
-    ul {
-        background-color: #ffffff;
-        padding: 15px 15px 15px 35px;
-        border-radius: 14px;
-        box-shadow: 0 3px 10px rgba(58, 166, 201, 0.15);
-        margin-bottom: 20px;
-    }
-
-    li {
-        margin-bottom: 8px;
-        line-height: 1.4;
-    }
-
-    li::marker {
-        color: #e8779e;
-    }
-
-    @media (max-width: 480px) {
-        body {
-            padding: 10px;
-        }
-
-        th, td {
-            padding: 8px 6px;
-            font-size: 0.85em;
-        }
-
-        h1 {
-            font-size: 1.5em;
-        }
-    }
-
-	.tabs {
+    /* ---- Navegación tipo "tapas de vaso" ---- */
+    .tabs {
         display: flex;
-        gap: 8px;
-        margin: 20px 0;
+        gap: 10px;
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 6px 16px 18px 16px;
         position: sticky;
         top: 0;
-        background: #eaf6fb;
-        padding: 10px 0;
+        background: var(--crema);
         z-index: 10;
     }
 
     .tab-btn {
         flex: 1;
-        padding: 12px 8px;
+        padding: 12px 6px 14px 6px;
         border: none;
-        border-radius: 12px;
+        border-radius: 0 0 16px 16px;
         background-color: #ffffff;
-        color: #3aa6c9;
-        font-weight: bold;
-        font-size: 0.85em;
+        color: var(--azul-oscuro);
+        font-family: 'Fredoka', sans-serif;
+        font-weight: 500;
+        font-size: 0.82em;
         cursor: pointer;
-        box-shadow: 0 2px 6px rgba(58, 166, 201, 0.15);
+        box-shadow: 0 3px 8px rgba(31,58,69,0.10);
+        border-top: 4px solid var(--boba-claro);
         transition: 0.2s;
     }
 
     .tab-btn.active {
-        background-color: #3aa6c9;
+        background-color: var(--azul);
         color: white;
+        border-top: 4px solid var(--rosa);
     }
 
     .seccion {
         display: none;
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 0 16px;
     }
 
     .seccion.active {
         display: block;
     }
 
+    /* ---- Barra de progreso "vaso llenándose" ---- */
+    .progreso-wrap {
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 10px 16px;
+        margin-bottom: 18px;
+        box-shadow: 0 3px 10px rgba(31,58,69,0.08);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .vaso-wrap {
+        position: relative;
+        width: 44px;
+        height: 72px;
+        flex-shrink: 0;
+        margin-top: 10px;
+    }
+
+    .pajita {
+        position: absolute;
+        top: -16px;
+        left: 60%;
+        width: 7px;
+        height: 30px;
+        background: repeating-linear-gradient(180deg, var(--rosa) 0px, var(--rosa) 6px, #ffffff 6px, #ffffff 12px);
+        border-radius: 4px;
+        transform: rotate(14deg);
+        z-index: 3;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    }
+
+    .vaso-svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
+
+    .tapa-vaso {
+        fill: #ffffff;
+        stroke: var(--boba-claro);
+        stroke-width: 1.5;
+    }
+
+    .cuerpo-vaso {
+        fill: #fdfdfb;
+        stroke: var(--boba-claro);
+        stroke-width: 1.5;
+    }
+
+    .liquido-svg {
+        transition: y 0.5s ease, height 0.5s ease;
+    }
+
+    .perla-dot-svg {
+        fill: var(--boba);
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: rebotePerla 0.5s cubic-bezier(.34,1.56,.64,1);
+        filter: drop-shadow(0 1px 1px rgba(0,0,0,0.25));
+    }
+
+    @keyframes rebotePerla {
+        0% { transform: scale(0) translateY(-4px); opacity: 0; }
+        55% { transform: scale(1.3) translateY(1px); opacity: 1; }
+        75% { transform: scale(0.9) translateY(-1px); }
+        100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    /* Elementos decorativos flotando */
+    .flotantes {
+        max-width: 700px;
+        margin: 0 auto;
+        position: relative;
+        height: 0;
+    }
+
+    .flota {
+        position: absolute;
+        font-size: 1.3em;
+        opacity: 0.55;
+        animation: flotar 3.5s ease-in-out infinite;
+    }
+
+    @keyframes flotar {
+        0%, 100% { transform: translateY(0) rotate(-4deg); }
+        50% { transform: translateY(-10px) rotate(4deg); }
+    }
+
+    .progreso-texto {
+        font-size: 0.85em;
+        font-weight: 700;
+        color: var(--tinta);
+        flex: 1;
+    }
+
+    .progreso-texto span {
+        color: var(--rosa);
+    }
+
+    /* ---- Tarjetas de tareas (en vez de tabla plana) ---- */
+    .tarea-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 12px 16px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 8px rgba(31,58,69,0.07);
+        transition: background 0.3s, transform 0.2s;
+        animation: entraCard 0.35s ease backwards;
+    }
+
+    .tarea-card:active {
+        transform: scale(0.98);
+    }
+
+    .tarea-card.hecha {
+        background: linear-gradient(90deg, #eef8fb 0%, #ffffff 100%);
+    }
+
+    @keyframes entraCard {
+        from {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .seccion.active {
+        animation: fundido 0.3s ease;
+    }
+
+    @keyframes fundido {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .tarea-texto {
+        flex: 1;
+        font-size: 0.92em;
+        line-height: 1.35;
+    }
+
+    .tarea-card.hecha .tarea-texto {
+        color: var(--boba-claro);
+        text-decoration: line-through;
+        text-decoration-color: var(--rosa);
+    }
+
+    .tarea-fecha {
+        font-size: 0.75em;
+        color: var(--azul-oscuro);
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    /* ---- Checkbox = perla de boba ---- */
+    input[type="checkbox"].perla {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 26px;
+        height: 26px;
+        min-width: 26px;
+        border-radius: 50%;
+        border: 2px solid var(--boba-claro);
+        background: #fff;
+        cursor: pointer;
+        position: relative;
+        transition: 0.2s;
+    }
+
+    input[type="checkbox"].perla:checked {
+        background: var(--boba);
+        border-color: var(--boba);
+        animation: popPerla 0.35s ease;
+    }
+
+    input[type="checkbox"].perla:checked::after {
+        content: "✓";
+        color: #fff;
+        font-size: 0.9em;
+        font-weight: 700;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    @keyframes popPerla {
+        0% { transform: scale(1); }
+        45% { transform: scale(1.3); }
+        100% { transform: scale(1); }
+    }
+
+    h2 {
+        font-family: 'Fredoka', sans-serif;
+        font-weight: 600;
+        color: var(--azul-oscuro);
+        font-size: 1.2em;
+        margin: 18px 0 4px 0;
+    }
+
+    h5 {
+        color: var(--boba-claro);
+        font-weight: 400;
+        font-style: italic;
+        font-size: 0.8em;
+        margin: 0 0 14px 0;
+    }
+
+    h3 {
+        font-family: 'Fredoka', sans-serif;
+        color: var(--rosa);
+        font-size: 1.05em;
+        margin: 22px 0 10px 0;
+    }
+
+    ul.lista-libre {
+        list-style: none;
+        margin: 0 0 18px 0;
+        padding: 0;
+    }
+
+    ul.lista-libre li {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 12px 16px;
+        margin-bottom: 8px;
+        box-shadow: 0 2px 8px rgba(31,58,69,0.07);
+        font-size: 0.9em;
+        line-height: 1.4;
+        position: relative;
+        padding-left: 38px;
+    }
+
+    ul.lista-libre li::before {
+        content: "🧋";
+        position: absolute;
+        left: 12px;
+        top: 11px;
+        font-size: 0.95em;
+    }
+
     @media (max-width: 480px) {
+        h1 {
+            font-size: 1.5em;
+        }
+
         .tab-btn {
-            font-size: 0.75em;
-            padding: 10px 4px;
+            font-size: 0.72em;
+            padding: 10px 4px 12px 4px;
         }
     }
 </style>
 </head>
 
 <body>
-    <h1>Checklist Chashier</h1>
-	
-	<div class="tabs">
+
+<div class="cabecera">
+    <span class="mascota">🐻‍❄️🧋</span>
+    <h1>Checklist Chasier</h1>
+    <div class="saludo">¡Hola! Tuanfu está vigilando las tareas de hoy</div>
+</div>
+
+<div class="flotantes">
+    <span class="flota" style="top:-92px; left:8%; animation-duration: 4s;">🧋</span>
+    <span class="flota" style="top:-60px; right:10%; animation-duration: 3.2s; animation-delay: 0.6s;">🫧</span>
+    <span class="flota" style="top:-100px; right:25%; animation-duration: 3.8s; animation-delay: 1.2s; font-size: 0.9em;">🧋</span>
+</div>
+
+<div class="tabs">
     <button class="tab-btn active" onclick="mostrarSeccion('cierre', this)">🔒 Cierre</button>
     <button class="tab-btn" onclick="mostrarSeccion('cada3', this)">📅 Cada 3 días</button>
     <button class="tab-btn" onclick="mostrarSeccion('libre', this)">🧹 Tiempo libre</button>
-	</div>
+</div>
 
+<!-- ===================== SECCIÓN CIERRE ===================== -->
 <div id="cierre" class="seccion active">
- <h2 align="center">Cierre</h2>
+    <h2>Cierre</h2>
 
-<table>
-    <tr>
-        <th>Tarea</th>
-        <th>Hecho</th>
-    </tr>
+    <div class="progreso-wrap">
+        <div class="vaso-wrap" id="vasowrap-cierre">
+            <div class="pajita"></div>
+            <svg class="vaso-svg" viewBox="0 0 40 62" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <clipPath id="clipCierre">
+                        <path d="M4,4 L36,4 L30,60 L10,60 Z"/>
+                    </clipPath>
+                    <linearGradient id="gradTeCierre" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#E8CBA3"/>
+                        <stop offset="1" stop-color="#C99A63"/>
+                    </linearGradient>
+                </defs>
+                <ellipse class="tapa-vaso" cx="20" cy="4" rx="18" ry="4"/>
+                <path class="cuerpo-vaso" d="M4,4 L36,4 L30,60 L10,60 Z"/>
+                <g clip-path="url(#clipCierre)">
+                    <rect id="liquido-cierre" class="liquido-svg" x="0" y="60" width="40" height="0" fill="url(#gradTeCierre)"/>
+                    <g id="pila-cierre-svg"></g>
+                </g>
+            </svg>
+        </div>
+        <div class="progreso-texto"><span id="texto-cierre">0/21</span> tareas completadas</div>
+    </div>
 
-    <tr>
-	<td>Limpiar la cafetera</td>
-	<td><input type="checkbox" class="cierre" data-id="1"></td>
-    </tr>
-
-    <tr>
-	<td>Limpiar mesas</td>
-	<td><input type="checkbox" class="cierre" data-id="2"></td>
-    </tr>
-
-    <tr>
-	<td>Limpiar el baño</td>
-	<td><input type="checkbox" class="cierre" data-id="3"></td>
-    </tr>
-
-    <tr>
-	<td>Barrer</td>
-	<td><input type="checkbox" class="cierre" data-id="4"></td>
-    </tr>
-
-    <tr>
-	<td>Fregar</td>
-	<td><input type="checkbox" class="cierre" data-id="5"></td>
-    </tr>
-
-    <tr>
-	<td>Tirar la basura</td>
-	<td><input type="checkbox" class="cierre" data-id="6"></td>
-    </tr>
-
-    <tr>
-	<td>Poner bolsas de basura nuevas</td>
-	<td><input type="checkbox" class="cierre" data-id="7"></td>
-    </tr>
-
-    <tr>
-	<td>Guardar siropes</td>
-	<td><input type="checkbox" class="cierre" data-id="8"></td>
-    </tr>
-
-    <tr>
-	<td>Guardar hielo</td>
-	<td><input type="checkbox" class="cierre" data-id="9"></td>
-    </tr>
-
-    <tr>
-	<td>Guardar muffins y otros</td>
-	<td><input type="checkbox" class="cierre" data-id="10"></td>
-    </tr>
-
-    <tr>
-	<td>Apagar aire acondicionado (nunca debe estar a menos de 27º</td>
-	<td><input type="checkbox" class="cierre" data-id="11"></td>
-    </tr>
-
-    <tr>
-	<td>Apagar la máquina de sellar</td>
-	<td><input type="checkbox" class="cierre" data-id="12"></td>
-    </tr>
-
-    <tr>
-	<td>Apagar la máquina de los polvos</td>
-	<td><input type="checkbox" class="cierre" data-id="13"></td>
-    </tr>
-
-    <tr>
-	<td>Apagar la máquina de fructosa</td>
-	<td><input type="checkbox" class="cierre" data-id="14"></td>
-    </tr>
-
-    <tr>
-	<td>Apagar la neverita (botón verde - el botón rojo apaga todo todo)</td>
-	<td><input type="checkbox" class="cierre" data-id="15"></td>
-    </tr>
-
-    <tr>
-	<td>Apagar los dos ordenadores de la caja</td>
-	<td><input type="checkbox" class="cierre" data-id="16"></td>
-    </tr>
-
-    <tr>
-	<td>Apagar la máquina de debajo de la caja (interruptor en la parte trasera)</td>
-	<td><input type="checkbox" class="cierre" data-id="17"></td>
-    </tr>
-
-    <tr>
-	<td>Apagar luces (interruptor detrás del agua del matcha)</td>
-	<td><input type="checkbox" class="cierre" data-id="18"></td>
-    </tr>
-
-    <tr>
-	<td>Apagar luces neón de detrás de la máquina del agua del matcha</td>
-	<td><input type="checkbox" class="cierre" data-id="19"></td>
-    </tr>
-
-    <tr>
-	<td>Apagar la música</td>
-	<td><input type="checkbox" class="cierre" data-id="20"></td>
-    </tr>
-
-    <tr>
-	<td>Cerrar la puerta (girar la llave hacia la derecha hasta que suene click) y apagar las luces (interuptor y clavija roja)</td>
-	<td><input type="checkbox" class="cierre" data-id="21"></td>
-    </tr>
-</table>
-
+    <div id="lista-cierre"></div>
 </div>
 
+<!-- ===================== SECCIÓN CADA 3 DÍAS ===================== -->
 <div id="cada3" class="seccion">
- <h2 align="center">1 vez cada 3 días</h2>
+    <h2>1 vez cada 3 días</h2>
 
-<table>
-    <tr>
-        <th>Tarea</th>
-        <th>Hecho</th>
-	<th>Última vez</th>
-    </tr>
+    <div class="progreso-wrap">
+        <div class="vaso-wrap" id="vasowrap-cada3">
+            <div class="pajita"></div>
+            <svg class="vaso-svg" viewBox="0 0 40 62" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <clipPath id="clipCada3">
+                        <path d="M4,4 L36,4 L30,60 L10,60 Z"/>
+                    </clipPath>
+                    <linearGradient id="gradTeCada3" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#E8CBA3"/>
+                        <stop offset="1" stop-color="#C99A63"/>
+                    </linearGradient>
+                </defs>
+                <ellipse class="tapa-vaso" cx="20" cy="4" rx="18" ry="4"/>
+                <path class="cuerpo-vaso" d="M4,4 L36,4 L30,60 L10,60 Z"/>
+                <g clip-path="url(#clipCada3)">
+                    <rect id="liquido-cada3" class="liquido-svg" x="0" y="60" width="40" height="0" fill="url(#gradTeCada3)"/>
+                    <g id="pila-cada3-svg"></g>
+                </g>
+            </svg>
+        </div>
+        <div class="progreso-texto"><span id="texto-cada3">0/11</span> tareas completadas</div>
+    </div>
 
-    <tr>
-        <td>Limpiar el fregadero y desagüe con el cepillo</td>
-        <td><input type="checkbox" class="cada3" data-id="1"></td>
-	<td class="fecha3d"></td>
-    </tr>
-
-    <tr>
-        <td>Limpiar la cafetera (incluido el tubo: meter agua hasta que salga limpia)</td>
-        <td><input type="checkbox" class="cada3" data-id="2"></td>
-	<td class="fecha3d"></td>
-    </tr>
-
-    <tr>
-        <td>Limpiar estantería de tarros, siropes, vasos y té</td>
-        <td><input type="checkbox" class="cada3" data-id="3"></td>
-	<td class="fecha3d"></td>
-    </tr>
-
-    <tr>
-        <td>Limpiar zona del hielo (tapa, pieza de los agujeros, debajo de es pieza tmb)</td>
-        <td><input type="checkbox" class="cada3" data-id="4"></td>
-	<td class="fecha3d"></td>
-    </tr>
-
-    <tr>
-        <td>Limpiar la máquina de sellar (el exterior y el círculo - con el cepillo)</td>
-        <td><input type="checkbox" class="cada3" data-id="5"></td>
-	<td class="fecha3d"></td>
-    </tr>
-
-    <tr>
-        <td>Limpiar zona de los toppings y sus tapas</td>
-        <td><input type="checkbox" class="cada3" data-id="6"></td>
-	<td class="fecha3d"></td>
-    </tr>
-
-    <tr>
-        <td>Limpiar cristal de los toppings</td>
-        <td><input type="checkbox" class="cada3" data-id="7"></td>
-	<td class="fecha3d"></td>
-    </tr>
-
-    <tr>
-        <td>Limpiar cristal de los muffins</td>
-        <td><input type="checkbox" class="cada3" data-id="8"></td>
-	<td class="fecha3d"></td>
-    </tr>
-
-    <tr>
-        <td>Limpiar cristales al exterior</td>
-        <td><input type="checkbox" class="cada3" data-id="9"></td>
-	<td class="fecha3d"></td>
-    </tr>
-
-    <tr>
-        <td>Limpiar vasos, tapas y tapones (con el cepillo)</td>
-        <td><input type="checkbox" class="cada3" data-id="10"></td>
-	<td class="fecha3d"></td>
-    </tr>
-
-    <tr>
-	<td>Limpiar nuestro baño</td>
-        <td><input type="checkbox" class="cada3" data-id="11"></td>
-	<td class="fecha3d"></td>
-    </tr>
-
-</table>
-	
+    <div id="lista-cada3"></div>
 </div>
 
-	
+<!-- ===================== SECCIÓN TIEMPO LIBRE ===================== -->
 <div id="libre" class="seccion">
-	
-<h2 align="center">Cuando no hay clientes</h2>
-<h5 align="center">limpiezas que aparecen en cosas que hacer antes del cierre también aplican aquí</h1>
+    <h2>Cuando no hay clientes</h2>
+    <h5>Las limpiezas del cierre también aplican aquí</h5>
 
-<h3>Limpiar</h3>
+    <h3>Limpiar</h3>
+    <ul class="lista-libre">
+        <li>Limpiar el agitador</li>
+        <li>Limpiar el aparato de la fructosa</li>
+        <li>Limpiar contenedores de té (las boquillas también, especialmente del té Oolong)</li>
+        <li>Limpiar los cristales de las vitrinas + exteriores</li>
+        <li>Lavar trapos</li>
+        <li>Limpiar mesas y la zona de la caja</li>
+    </ul>
 
-<ul>
-    <li>Limpiar el agitados</li>
-    <li>Limpiar el aparato de la fructosa</li>
-    <li>Limpiar contenedores de té (las boquillas también, especialmente del té Oolong</li>
-    <li>Limpiar los cristales de las vitrinas + exteriores</li>
-    <li>Lavar trapos</li>
-    <li>Limpiar mesas y la zona de la caja</li>
-</ul>
+    <h3>Revisar stock</h3>
+    <ul class="lista-libre">
+        <li>Revisar siropes, toppings y tés</li>
+        <li>Revisar los polvos (antes de sacar del almacén, mirar en el cajón de abajo y en la caja de cartón de la cocina)</li>
+        <li>Revisar la fructosa</li>
+        <li>Revisar los polvos de té</li>
+        <li>Revisar que haya botellas de agua y demás en la nevera</li>
+        <li>Revisar que haya Cheese Cream</li>
+        <li>Revisar que haya Puré de Taro</li>
+        <li>Revisar el menú de Glovo y Uber (que esté actualizado)</li>
+    </ul>
 
-<h3>Revisar stock</h3>
-
-<ul>
-    <li>Revisar siropes, toppings y tés</li>
-    <li>Revisar los polvos (antes de sacar del alamacén mirar en el cajón de abajo y en la caja de cartón de la cocina)</li>
-    <li>Revisar la fructosa</li>
-    <li>Revisar los polvos de té</li>
-    <li>Revisar que haya botellas de agua y demás en la nevera</li>
-    <li>Revisar que haya Cheese Cream</li>
-    <li>Revisar que haya Puré de Taro</li>
-    <li>Revisar el menú de Glovo y Uber (que esté actualizado)</li>
-</ul>
-
-<h3>Reposición y organización</h3>
-
-<ul>
-    <li>Reponer muffins y otros</li>
-    <li>Reponer el agua de la máquina del matcha</li>
-    <li>Cambiar el agua de los cazos de los toppings</li>
-    <li>Poner tinta a los sellos</li>
-    <li>Pasar las salidas del almacén al Excel</li>
-    <li>Colocar y ordenar el almacén</li>
-</ul>
-	
+    <h3>Reposición y organización</h3>
+    <ul class="lista-libre">
+        <li>Reponer muffins y otros</li>
+        <li>Reponer el agua de la máquina del matcha</li>
+        <li>Cambiar el agua de los cazos de los toppings</li>
+        <li>Poner tinta a los sellos</li>
+        <li>Pasar las salidas del almacén al Excel</li>
+        <li>Colocar y ordenar el almacén</li>
+    </ul>
 </div>
-</body>
 
 <script>
-	
+
+const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbzHym0_194_R0LVvdAURDEaeLDAFLd6yXNDSIPeFnE7Dw6lXvyAFzPRRkCYq2RdjnLu/exec";
+
+// Tareas de la tabla Cierre (id + texto)
+const TAREAS_CIERRE = [
+    {id: 1, texto: "Limpiar la cafetera"},
+    {id: 2, texto: "Limpiar mesas"},
+    {id: 3, texto: "Limpiar el baño"},
+    {id: 4, texto: "Barrer"},
+    {id: 5, texto: "Fregar"},
+    {id: 6, texto: "Tirar la basura"},
+    {id: 7, texto: "Poner bolsas de basura nuevas"},
+    {id: 8, texto: "Guardar siropes"},
+    {id: 9, texto: "Guardar hielo"},
+    {id: 10, texto: "Guardar muffins y otros"},
+    {id: 11, texto: "Apagar aire acondicionado (nunca debe estar a menos de 27º)"},
+    {id: 12, texto: "Apagar la máquina de sellar"},
+    {id: 13, texto: "Apagar la máquina de los polvos"},
+    {id: 14, texto: "Apagar la máquina de fructosa"},
+    {id: 15, texto: "Apagar la neverita (botón verde - el botón rojo apaga todo todo)"},
+    {id: 16, texto: "Apagar los dos ordenadores de la caja"},
+    {id: 17, texto: "Apagar la máquina de debajo de la caja (interruptor en la parte trasera)"},
+    {id: 18, texto: "Apagar luces (interruptor detrás del agua del matcha)"},
+    {id: 19, texto: "Apagar luces neón de detrás de la máquina del agua del matcha"},
+    {id: 20, texto: "Apagar la música"},
+    {id: 21, texto: "Cerrar la puerta (girar la llave hacia la derecha hasta que suene click) y apagar las luces (interruptor y clavija roja)"}
+];
+
+// Tareas de la tabla Cada 3 días (id + texto)
+const TAREAS_CADA3 = [
+    {id: 1, texto: "Limpiar el fregadero y desagüe con el cepillo"},
+    {id: 2, texto: "Limpiar la cafetera (incluido el tubo: meter agua hasta que salga limpia)"},
+    {id: 3, texto: "Limpiar estantería de tarros, siropes, vasos y té"},
+    {id: 4, texto: "Limpiar zona del hielo (tapa, pieza de los agujeros, debajo de esa pieza también)"},
+    {id: 5, texto: "Limpiar la máquina de sellar (el exterior y el círculo - con el cepillo)"},
+    {id: 6, texto: "Limpiar zona de los toppings y sus tapas"},
+    {id: 7, texto: "Limpiar cristal de los toppings"},
+    {id: 8, texto: "Limpiar cristal de los muffins"},
+    {id: 9, texto: "Limpiar cristales al exterior"},
+    {id: 10, texto: "Limpiar vasos, tapas y tapones (con el cepillo)"},
+    {id: 11, texto: "Limpiar nuestro baño"}
+];
+
+// ---- Pila orgánica de perlas dentro del vaso SVG ----
+const CACHE_POSICIONES = {};
+
+function generarPosicionSVG(pilaId, index) {
+    if (!CACHE_POSICIONES[pilaId]) CACHE_POSICIONES[pilaId] = {};
+    if (CACHE_POSICIONES[pilaId][index]) return CACHE_POSICIONES[pilaId][index];
+
+    let fila = Math.floor(index / 4);
+    let col = index % 4;
+    let cy = 58 - fila * 8;
+    if (cy < 10) cy = 10;
+
+    // el vaso es más ancho arriba (y=4) y más estrecho abajo (y=60)
+    let t = (60 - cy) / 56; // 0 abajo, 1 arriba
+    let izq = 10 - t * 6;
+    let der = 30 + t * 6;
+    let rango = der - izq;
+
+    let seed = (index * 97 + 13) % 100;
+    let jitter = ((seed % 9) - 4);
+    let cx = izq + (rango / 4) * (col + 0.5) + jitter;
+    cx = Math.max(izq + 2, Math.min(der - 2, cx));
+
+    let pos = { cx: cx, cy: cy };
+    CACHE_POSICIONES[pilaId][index] = pos;
+    return pos;
+}
+
+function actualizarPilaPerlas(pilaId, cantidad) {
+    let grupo = document.getElementById(pilaId);
+    let actuales = grupo.children.length;
+
+    if (cantidad > actuales) {
+        for (let i = actuales; i < cantidad; i++) {
+            let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circle.setAttribute("class", "perla-dot-svg");
+            let pos = generarPosicionSVG(pilaId, i);
+            circle.setAttribute("cx", pos.cx);
+            circle.setAttribute("cy", pos.cy);
+            circle.setAttribute("r", 3);
+            grupo.appendChild(circle);
+        }
+    } else if (cantidad < actuales) {
+        for (let i = actuales; i > cantidad; i--) {
+            if (grupo.lastChild) grupo.removeChild(grupo.lastChild);
+        }
+    }
+}
+
+// ---- Rellenar el líquido del vaso SVG según % completado ----
+function actualizarLiquido(rectId, pct) {
+    let alturaPx = pct * 56; // el vaso mide 56 de alto útil (de y=4 a y=60)
+    let rect = document.getElementById(rectId);
+    rect.setAttribute("y", 60 - alturaPx);
+    rect.setAttribute("height", alturaPx);
+}
+
 function mostrarSeccion(id, boton) {
     document.querySelectorAll(".seccion").forEach(function(sec) {
         sec.classList.remove("active");
@@ -439,10 +609,108 @@ function mostrarSeccion(id, boton) {
     boton.classList.add("active");
 }
 
-	
-const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbzHym0_194_R0LVvdAURDEaeLDAFLd6yXNDSIPeFnE7Dw6lXvyAFzPRRkCYq2RdjnLu/exec";
+// ---- Construir las tarjetas de la tabla Cierre ----
+function construirCierre() {
+    let contenedor = document.getElementById("lista-cierre");
+    contenedor.innerHTML = "";
 
-// ---- Cargar estado de la tabla Cierre ----
+    TAREAS_CIERRE.forEach(function(tarea) {
+        let card = document.createElement("div");
+        card.className = "tarea-card";
+        card.id = "card-cierre-" + tarea.id;
+
+        card.innerHTML =
+            '<input type="checkbox" class="perla cierre" data-id="' + tarea.id + '">' +
+            '<div class="tarea-texto">' + tarea.texto + '</div>';
+
+        contenedor.appendChild(card);
+    });
+
+    document.querySelectorAll(".cierre").forEach(function(checkbox) {
+        checkbox.addEventListener("change", function() {
+            let id = this.getAttribute("data-id");
+            let hecho = this.checked;
+            actualizarTarjetaCierre(id, hecho);
+            actualizarProgresoCierre();
+            fetch(URL_SCRIPT + "?accion=marcarCierre&id=" + id + "&hecho=" + hecho);
+        });
+    });
+}
+
+function actualizarTarjetaCierre(id, hecho) {
+    let card = document.getElementById("card-cierre-" + id);
+    if (hecho) {
+        card.classList.add("hecha");
+    } else {
+        card.classList.remove("hecha");
+    }
+}
+
+function actualizarProgresoCierre() {
+    let total = TAREAS_CIERRE.length;
+    let hechas = document.querySelectorAll(".cierre:checked").length;
+    document.getElementById("texto-cierre").innerText = hechas + "/" + total;
+    actualizarLiquido("liquido-cierre", hechas / total);
+    actualizarPilaPerlas("pila-cierre-svg", hechas);
+}
+
+// ---- Construir las tarjetas de la tabla Cada 3 días ----
+function construirCada3() {
+    let contenedor = document.getElementById("lista-cada3");
+    contenedor.innerHTML = "";
+
+    TAREAS_CADA3.forEach(function(tarea) {
+        let card = document.createElement("div");
+        card.className = "tarea-card";
+        card.id = "card-cada3-" + tarea.id;
+
+        card.innerHTML =
+            '<input type="checkbox" class="perla cada3" data-id="' + tarea.id + '">' +
+            '<div class="tarea-texto">' + tarea.texto + '</div>' +
+            '<div class="tarea-fecha" id="fecha-cada3-' + tarea.id + '"></div>';
+
+        contenedor.appendChild(card);
+    });
+
+    document.querySelectorAll(".cada3").forEach(function(checkbox) {
+        checkbox.addEventListener("change", function() {
+            let id = this.getAttribute("data-id");
+            let hecho = this.checked;
+            let celdaFecha = document.getElementById("fecha-cada3-" + id);
+
+            actualizarTarjetaCada3(id, hecho);
+
+            if (hecho) {
+                let hoy = new Date();
+                celdaFecha.innerText = hoy.getDate() + "/" + (hoy.getMonth() + 1) + "/" + hoy.getFullYear();
+            } else {
+                celdaFecha.innerText = "";
+            }
+
+            actualizarProgresoCada3();
+            fetch(URL_SCRIPT + "?accion=marcarCada3dias&id=" + id + "&hecho=" + hecho);
+        });
+    });
+}
+
+function actualizarTarjetaCada3(id, hecho) {
+    let card = document.getElementById("card-cada3-" + id);
+    if (hecho) {
+        card.classList.add("hecha");
+    } else {
+        card.classList.remove("hecha");
+    }
+}
+
+function actualizarProgresoCada3() {
+    let total = TAREAS_CADA3.length;
+    let hechas = document.querySelectorAll(".cada3:checked").length;
+    document.getElementById("texto-cada3").innerText = hechas + "/" + total;
+    actualizarLiquido("liquido-cada3", hechas / total);
+    actualizarPilaPerlas("pila-cada3-svg", hechas);
+}
+
+// ---- Cargar estado desde el script ----
 function cargarCierre() {
     fetch(URL_SCRIPT + "?accion=leerCierre")
         .then(function(respuesta) { return respuesta.json(); })
@@ -451,12 +719,13 @@ function cargarCierre() {
                 let checkbox = document.querySelector('.cierre[data-id="' + tarea.id + '"]');
                 if (checkbox) {
                     checkbox.checked = tarea.hecho;
+                    actualizarTarjetaCierre(tarea.id, tarea.hecho);
                 }
             });
+            actualizarProgresoCierre();
         });
 }
 
-// ---- Cargar estado de la tabla Cada 3 días ----
 function cargarCada3dias() {
     fetch(URL_SCRIPT + "?accion=leerCada3dias")
         .then(function(respuesta) { return respuesta.json(); })
@@ -465,46 +734,21 @@ function cargarCada3dias() {
                 let checkbox = document.querySelector('.cada3[data-id="' + tarea.id + '"]');
                 if (checkbox) {
                     checkbox.checked = tarea.hecho;
-                    let fila = checkbox.closest("tr");
-                    let celdaFecha = fila.querySelector(".fecha3d");
-                    celdaFecha.innerText = tarea.fecha;
+                    actualizarTarjetaCada3(tarea.id, tarea.hecho);
+                    document.getElementById("fecha-cada3-" + tarea.id).innerText = tarea.fecha;
                 }
             });
+            actualizarProgresoCada3();
         });
 }
 
-// ---- Escuchar clicks en la tabla Cierre ----
-document.querySelectorAll(".cierre").forEach(function(checkbox) {
-    checkbox.addEventListener("change", function() {
-        let id = this.getAttribute("data-id");
-        let hecho = this.checked;
-        fetch(URL_SCRIPT + "?accion=marcarCierre&id=" + id + "&hecho=" + hecho);
-    });
-});
-
-// ---- Escuchar clicks en la tabla Cada 3 días ----
-document.querySelectorAll(".cada3").forEach(function(checkbox) {
-    checkbox.addEventListener("change", function() {
-        let id = this.getAttribute("data-id");
-        let hecho = this.checked;
-        let fila = this.closest("tr");
-        let celdaFecha = fila.querySelector(".fecha3d");
-
-        if (hecho) {
-            let hoy = new Date();
-            celdaFecha.innerText = hoy.getDate() + "/" + (hoy.getMonth() + 1) + "/" + hoy.getFullYear();
-        } else {
-            celdaFecha.innerText = "";
-        }
-
-        fetch(URL_SCRIPT + "?accion=marcarCada3dias&id=" + id + "&hecho=" + hecho);
-    });
-});
-
-// ---- Al cargar la página, pedir el estado actual ----
+// ---- Inicializar ----
+construirCierre();
+construirCada3();
 cargarCierre();
 cargarCada3dias();
 
 </script>
 
+</body>
 </html>
