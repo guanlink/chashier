@@ -2,6 +2,118 @@
 <html>
 <head>
     <title>Checklist</title>
+	<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background-color: #f5efe6;
+        color: #3e2f24;
+        margin: 0;
+        padding: 20px;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        text-align: center;
+        color: #6f4e37;
+        font-size: 1.8em;
+        margin-bottom: 5px;
+    }
+
+    h2 {
+        color: #6f4e37;
+        border-bottom: 2px solid #d9c3a9;
+        padding-bottom: 8px;
+        margin-top: 40px;
+    }
+
+    h3 {
+        color: #8a6d4f;
+        margin-top: 25px;
+    }
+
+    h5 {
+        color: #a08b73;
+        font-weight: normal;
+        font-style: italic;
+        font-size: 0.85em;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0 30px 0;
+        background-color: #fffdfa;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    table, th, td {
+        border: none;
+    }
+
+    th {
+        background-color: #6f4e37;
+        color: white;
+        padding: 12px 10px;
+        text-align: left;
+        font-size: 0.95em;
+    }
+
+    td {
+        padding: 12px 10px;
+        border-bottom: 1px solid #ece3d6;
+        font-size: 0.95em;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    tr:hover td {
+        background-color: #faf6ef;
+    }
+
+    input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        accent-color: #6f4e37;
+        cursor: pointer;
+    }
+
+    ul {
+        background-color: #fffdfa;
+        padding: 15px 15px 15px 35px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        margin-bottom: 20px;
+    }
+
+    li {
+        margin-bottom: 8px;
+        line-height: 1.4;
+    }
+
+    @media (max-width: 480px) {
+        body {
+            padding: 10px;
+        }
+
+        th, td {
+            padding: 8px 6px;
+            font-size: 0.85em;
+        }
+
+        h1 {
+            font-size: 1.4em;
+        }
+    }
+</style>
 </head>
 
 <body>
@@ -10,7 +122,7 @@
 
  <h2 align="center">Cierre</h2>
 
-<table border="1" align="center">
+<table>
     <tr>
         <th>Tarea</th>
         <th>Hecho</th>
@@ -124,7 +236,7 @@
 
  <h2 align="center">1 vez cada 3 días</h2>
 
-<table border="1" align="center">
+<table>
     <tr>
         <th>Tarea</th>
         <th>Hecho</th>
